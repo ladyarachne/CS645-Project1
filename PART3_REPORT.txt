@@ -1,0 +1,62 @@
+PART 3 REPORT - Password Cracking Assignment
+============================================
+
+OBJECTIVE:
+Find a password not in common-passwords.txt using an online wordlist, add it to common-passwords.txt, 
+and verify that Cracker.java can now recover it.
+
+APPROACH:
+----------
+1. Initial State: Cracker.java found 4 out of 10 passwords using common-passwords.txt:
+   - user0: nepenthe
+   - user1: zmodem
+   - user5: yellowstone
+   - user9: anthropogenic
+
+2. Missing Users: user2, user3, user4, user6, user7, user8
+
+3. Wordlist Selection:
+   - Source: RockYou password list (locally available at /Users/nat/Downloads/rockyou.txt)
+   - URL: Originally from https://github.com/brannondorsey/naive-hashcat/releases/download/data/rockyou.txt
+   - Reason for Selection: RockYou is one of the most comprehensive real-world password databases, 
+     containing 14+ million passwords from an actual breach. It's widely used in security research 
+     and penetration testing for dictionary attacks.
+   - Size: 133 MB, 14,344,391 passwords
+
+4. Search Process:
+   - Created temporary test program (CrackerRockyou.java) to use rockyou.txt wordlist
+   - Tested with first 100,000 passwords: Found existing passwords only
+   - Expanded to 500,000 passwords: SUCCESS!
+
+RESULTS:
+--------
+Password Found: darkchocolate
+User: user4
+Hash: $1$EW3CpL8A$QPwa4cl809qiEXOAr.MaJ1
+
+VERIFICATION:
+-------------
+1. Added "darkchocolate" to common-passwords.txt
+2. Ran Cracker.java again
+3. Confirmed it now finds 5 passwords including user4:darkchocolate
+
+FINAL CRACKER.JAVA OUTPUT:
+user1:zmodem
+user0:nepenthe
+user9:anthropogenic
+user5:yellowstone
+user4:darkchocolate
+
+TECHNICAL NOTES:
+----------------
+- The MD5Shadow.java file had a bug (duplicate line 120) that was causing incorrect hash generation.
+  This was fixed during Part 2.
+- The Cracker.java program originally filtered out passwords longer than 16 characters to avoid 
+  the MD5Shadow bug. After fixing the bug, this filter was removed.
+- The RockYou wordlist is particularly effective because it contains real passwords from actual users,
+  including common phrases and combinations like "darkchocolate".
+
+SUMMARY:
+--------
+Successfully identified "darkchocolate" as user4's password using the RockYou wordlist.
+The password has been added to common-passwords.txt and verified to work with Cracker.java.
