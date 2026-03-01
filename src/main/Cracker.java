@@ -1,3 +1,5 @@
+///CS 645 - Project 1 - Chris Konstantinidis, Nat Louis, Kleo Mimini
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;

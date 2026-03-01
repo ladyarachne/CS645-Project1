@@ -69,10 +69,6 @@ For Part 3, the RockYou password list was used to discover an additional passwor
 
 See `PART3_REPORT.txt` for complete documentation.
 
-## Technical Notes
-
-### Bug Fix in MD5Shadow.java
-The original MD5Shadow.java had a bug where line 120 was duplicating and overwriting the hash computation from the loop above it. This line was removed to fix the hash generation.
 
 ### Implementation Details
 - **SimpleCracker**: Concatenates salt + password, computes MD5, compares with stored hash
